@@ -11,13 +11,16 @@ import se.kth.iv1350.inspectcar.integration.PaymentAuthorization;
 import se.kth.iv1350.inspectcar.model.Counter;
 
 /**
- * This is the application's single controller. All calls to the model pass through here.
+ * This is the application's single controller. All calls to the model pass
+ * through here.
  */
 public class Controller {
+
     private DatabaseManager dbMgr;
-    private Garage          garage;
-    private PaymentAuthorization auth; 
-    private Counter counter; 
+
+    private Garage garage;
+    private PaymentAuthorization auth;
+    private Counter counter;
 
     /**
      * Creates a new instance using the specified database manager.
@@ -27,59 +30,71 @@ public class Controller {
      */
     public Controller(DatabaseManager dbMgr, Garage garage, PaymentAuthorization auth, Counter counter) {
         this.dbMgr = dbMgr;
-        this.garage= garage;
-        this.auth = auth; 
+
+        this.garage = garage;
+        this.auth = auth;
         this.counter = counter;
-    }
-    
-    public void newInspection(){
-       garage.nextInspection();
+
+        this.garage = garage;
 
     }
-    
+
+    public void newInspection() {
+        garage.nextInspection();
+
+    }
+
     public void closeDoor() {
         garage.closeDoor();
     }
-    
-    public List <InspectionItem> getInspecion(){
-    // InspectionItem car= new InspectionItem();
-     List<InspectionItem> inspecL= dbMgr.getDummyInsp();
-     
-     return inspecL;
+
+    public List<InspectionItem> getInspecion() {
+        // InspectionItem car= new InspectionItem();
+        List<InspectionItem> inspecL = dbMgr.getDummyInsp();
+
+        return inspecL;
     }
 
     /**
-     * Verifies that there are inspections to perform for the vehicle with the specified
-     * registration number. If there are inspections, returns the total cost for the inspections.
-     * Returns 0 if there are no inspections to perform. This will instead be indicated with an
-     * exception in a future version.
+     * Verifies that there are inspections to perform for the vehicle with the
+     * specified registration number. If there are inspections, returns the
+     * total cost for the inspections. Returns 0 if there are no inspections to
+     * perform. This will instead be indicated with an exception in a future
+     * version.
      *
      * @param regNo The registration number of the vehicle to inspect.
-     * @return The total cost for the inspections, or 0 if there are no inspections to perform.
+     * @return The total cost for the inspections, or 0 if there are no
+     * inspections to perform.
      */
     public int enterRegNo(String regNo) {
         Vehicle vehicle = new Vehicle(regNo);
         Inspection inspection = new Inspection(vehicle, dbMgr);
         return inspection.getCost();
     }
-    
-    public void storeResult(InspectionItem part){
-        
+
+    public void storeResult(InspectionItem part) {
+
         dbMgr.storeResult(part);
     }
-   
-    public void printResult(List<InspectionItem> inspectionList){
+
+    public void printResult(List<InspectionItem> inspectionList) {
         Printer printer = new Printer();
-        
-        printer.printResult(inspectionList); 
+
+        printer.printResult(inspectionList);
     }
-    public boolean authorize(){
+
+    public boolean authorize() {
         return auth.authorize();
     }
+
     public int getBalance() {
         return counter.getBalance();
     }
+
     public void addBalance(int amount) {
         counter.addBalance(amount);
+
+        printer.printResult(inspectionList);
+
     }
-}   
+}

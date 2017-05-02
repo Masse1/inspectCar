@@ -25,6 +25,7 @@ public class creditCard {
 
     public void setCVC(int CVC) {
         this.CVC = CVC;
+
     }
 
     public void setNumber(String number) {
@@ -38,7 +39,5 @@ public class creditCard {
     public void setExpDate(String expDate) {
         this.expDate = expDate;
     }
-    
-    
 
 }

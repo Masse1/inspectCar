@@ -32,15 +32,24 @@ public class View {
         List<InspectionItem> reginpec = contr.getInspecion();
 
         for (int i = 0; i < reginpec.size(); i++) {
-            contr.storeResult(reginpec.get(i));
+
+            System.out.println("The cost is:" + cost);
+
+            List<InspectionItem> reginpec = contr.getInspecion();
+
+            for (int i = 0; i < reginpec.size(); i++) {
+
+                contr.storeResult(reginpec.get(i));
+            }
+
+            contr.printResult(reginpec);
+            if (contr.authorize()) {
+                System.out.println("Payment Authorized, amount to pay: " + cost + " Kr");
+            }
+
+            contr.addBalance(cost);
+            System.out.println("Current value in counter is now: " + contr.getBalance() + " Kr");
         }
 
-        contr.printResult(reginpec);
-        if (contr.authorize()) {
-            System.out.println("Payment Authorized, amount to pay: " + cost + " Kr");
-        }
-        
-        contr.addBalance(cost);
-        System.out.println("Current value in counter is now: " + contr.getBalance()+" Kr");
     }
 }

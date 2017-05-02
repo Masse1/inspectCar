@@ -1,9 +1,11 @@
 package se.kth.iv1350.inspectcar.integration;
 
 /**
- * Represents an particular control of a vehicle, for example brakes or suspension.
+ * Represents an particular control of a vehicle, for example brakes or
+ * suspension.
  */
 public class InspectionItem {
+
     private final String name;
     private final int cost;
     private boolean result;
@@ -27,8 +29,8 @@ public class InspectionItem {
     }
 
     /**
-     * @return True if the specified object is considered to represent the same inspection item as
-     *         this object.
+     * @return True if the specified object is considered to represent the same
+     * inspection item as this object.
      */
     @Override
     public boolean equals(Object other) {
@@ -41,12 +43,12 @@ public class InspectionItem {
         InspectionItem otherInspItem = (InspectionItem) other;
         return otherInspItem.cost == this.cost && otherInspItem.name == this.name;
     }
-    
-    public void setResult(boolean result){
+
+    public void setResult(boolean result) {
         this.result = result;
     }
-    
-    public boolean getResult(){
+
+    public boolean getResult() {
         return result;
     }
     

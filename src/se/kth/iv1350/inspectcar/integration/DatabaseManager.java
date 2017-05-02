@@ -5,15 +5,17 @@ import java.util.List;
 import se.kth.iv1350.inspectcar.model.Vehicle;
 
 /**
- * This class is responsible for database calls. This is the only place the database is called.
+ * This class is responsible for database calls. This is the only place the
+ * database is called.
  */
 public class DatabaseManager {
+
     private List<InspectionItem> dummyInspectionList;
     public List<InspectionItem> resultList;
 
     /**
-     * Creates a new instance, which uses a hard coded list of inspections instead of calling a
-     * database.
+     * Creates a new instance, which uses a hard coded list of inspections
+     * instead of calling a database.
      */
     public DatabaseManager() {
         createDummyInspections();
@@ -21,12 +23,13 @@ public class DatabaseManager {
     }
 
     /**
-     * Searches the database for inspections to be performed on the specified vehicle. This dummy
-     * implementation returns hard coded inspections for some vehicles.
+     * Searches the database for inspections to be performed on the specified
+     * vehicle. This dummy implementation returns hard coded inspections for
+     * some vehicles.
      *
      * @param vehicle The vehicle to inspect.
-     * @return A list of <code>InspectionItem</code>s, where each element describes one particular
-     *         control.
+     * @return A list of <code>InspectionItem</code>s, where each element
+     * describes one particular control.
      */
     public List<InspectionItem> findInspectionsByVehicle(Vehicle vehicle) {
         if (vehicle.getRegNo().equals("ABC123")) {
@@ -34,25 +37,31 @@ public class DatabaseManager {
         }
         return null;
     }
-
+    
     private void createDummyInspections() {
         dummyInspectionList = new ArrayList<>();
         dummyInspectionList.add(new InspectionItem("brakes", 10));
         dummyInspectionList.add(new InspectionItem("suspension", 20));
         dummyInspectionList.add(new InspectionItem("stearing", 30));
     }
+
     private void createResultList() {
         resultList = new ArrayList<>();
     }
+
+    /**
+     *
+     * @return
+     */
     public List<InspectionItem> getDummyInsp(){
      return dummyInspectionList;
-    }
+
     
-    public void storeResult(InspectionItem part){
+   
+    
+    public void storeResult(InspectionItem part) {
         part.setResult(true);
         resultList.add(part);
     }
     
-    
-
 }
