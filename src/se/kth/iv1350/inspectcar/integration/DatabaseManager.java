@@ -17,6 +17,7 @@ public class DatabaseManager {
      */
     public DatabaseManager() {
         createDummyInspections();
+        createResultList();
     }
 
     /**
@@ -40,7 +41,9 @@ public class DatabaseManager {
         dummyInspectionList.add(new InspectionItem("suspension", 20));
         dummyInspectionList.add(new InspectionItem("stearing", 30));
     }
-    
+    private void createResultList() {
+        resultList = new ArrayList<>();
+    }
     public List<InspectionItem> getDummyInsp(){
      return dummyInspectionList;
     }

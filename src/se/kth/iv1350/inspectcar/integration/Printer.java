@@ -16,8 +16,10 @@ public class Printer {
     public void printResult(List<InspectionItem> inspectionList){
         
         for(InspectionItem e : inspectionList){
-            System.out.println("The result is " + e.getResult());
+            String status = "Repaired"; 
+            if(!e.getResult())
+                status ="Not Repaired";
+            System.out.println(e.getName() + " is: " + status);
         }
-    }
-    
+    } 
 }

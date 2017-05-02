@@ -5,6 +5,8 @@ import se.kth.iv1350.inspectcar.integration.DatabaseManager;
 import se.kth.iv1350.inspectcar.integration.Garage;
 import se.kth.iv1350.inspectcar.view.View;
 import se.kth.iv1350.inspectcar.integration.Printer;
+import se.kth.iv1350.inspectcar.integration.PaymentAuthorization;
+import se.kth.iv1350.inspectcar.model.Counter;
 /**
  * Starts the application.
  */
@@ -16,8 +18,11 @@ public class Main {
      */
     public static void main(String[] args) {
         DatabaseManager dbMgr = new DatabaseManager();
-        //Garage garage = new Garage();
-        Controller contr = new Controller(dbMgr, garage);
+        Garage garage = new Garage();
+        PaymentAuthorization auth = new PaymentAuthorization(); 
+        Counter counter = new Counter(750);
+        
+        Controller contr = new Controller(dbMgr, garage, auth, counter);
         View view = new View(contr);
         view.sampleExecution();
         

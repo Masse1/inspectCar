@@ -15,7 +15,7 @@ public class Garage {
     private Display display;
     private QueueNu queue;
 
-    Garage() {
+    public Garage() {
         door = new GarageDoor();
         display = new Display();
         queue = new QueueNu();

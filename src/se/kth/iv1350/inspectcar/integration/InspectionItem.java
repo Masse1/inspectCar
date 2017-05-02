@@ -49,4 +49,8 @@ public class InspectionItem {
     public boolean getResult(){
         return result;
     }
+    
+    public String getName(){
+        return name;
+    }
 }

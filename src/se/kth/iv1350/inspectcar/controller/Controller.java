@@ -7,6 +7,8 @@ import se.kth.iv1350.inspectcar.integration.InspectionItem;
 import se.kth.iv1350.inspectcar.integration.Printer;
 import se.kth.iv1350.inspectcar.model.Inspection;
 import se.kth.iv1350.inspectcar.model.Vehicle;
+import se.kth.iv1350.inspectcar.integration.PaymentAuthorization;
+import se.kth.iv1350.inspectcar.model.Counter;
 
 /**
  * This is the application's single controller. All calls to the model pass through here.
@@ -14,6 +16,8 @@ import se.kth.iv1350.inspectcar.model.Vehicle;
 public class Controller {
     private DatabaseManager dbMgr;
     private Garage          garage;
+    private PaymentAuthorization auth; 
+    private Counter counter; 
 
     /**
      * Creates a new instance using the specified database manager.
@@ -21,9 +25,11 @@ public class Controller {
      * @param dbMgr The database manager used for all database calls.
      * @param garage The garage manages to open/close the door and display Queue
      */
-    public Controller(DatabaseManager dbMgr, Garage garage) {
+    public Controller(DatabaseManager dbMgr, Garage garage, PaymentAuthorization auth, Counter counter) {
         this.dbMgr = dbMgr;
         this.garage= garage;
+        this.auth = auth; 
+        this.counter = counter;
     }
     
     public void newInspection(){
@@ -41,8 +47,6 @@ public class Controller {
      
      return inspecL;
     }
-    
-    
 
     /**
      * Verifies that there are inspections to perform for the vehicle with the specified
@@ -67,7 +71,15 @@ public class Controller {
     public void printResult(List<InspectionItem> inspectionList){
         Printer printer = new Printer();
         
-        printer.printResult(inspectionList);
-        
+        printer.printResult(inspectionList); 
+    }
+    public boolean authorize(){
+        return auth.authorize();
+    }
+    public int getBalance() {
+        return counter.getBalance();
+    }
+    public void addBalance(int amount) {
+        counter.addBalance(amount);
     }
 }   
