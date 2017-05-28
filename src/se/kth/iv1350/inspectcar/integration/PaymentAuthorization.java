@@ -10,13 +10,14 @@ package se.kth.iv1350.inspectcar.integration;
  * @author Kristoffer
  */
 public class PaymentAuthorization {
-    private boolean authorize = true; 
-    
+
+    private boolean authorize = true;
+
     public PaymentAuthorization() {
-        this.authorize = true; 
+        this.authorize = true;
     }
-    
+
     public boolean authorize() {
-        return authorize; 
+        return authorize;
     }
 }

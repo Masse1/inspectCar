@@ -1,6 +1,7 @@
 package se.kth.iv1350.inspectcar.view;
 
 import java.util.List;
+import java.util.Scanner;
 import se.kth.iv1350.inspectcar.controller.Controller;
 import se.kth.iv1350.inspectcar.integration.InspectionItem;
 
@@ -26,30 +27,42 @@ public class View {
      * <code>System.out</code>.
      */
     public void sampleExecution() {
+        Scanner sc = new Scanner(System.in);
         String regNoOfVehicleToInspect = "ABC123";
         int cost = contr.enterRegNo(regNoOfVehicleToInspect);
 
         List<InspectionItem> reginpec = contr.getInspecion();
 
-        for (int i = 0; i < reginpec.size(); i++) {
+        for (InspectionItem e : reginpec) { 
+            System.out.println(e.getName());
+            boolean partPassed = sc.nextBoolean();
+            if (partPassed) {
 
-            System.out.println("The cost is:" + cost);
-
-            List<InspectionItem> reginpec = contr.getInspecion();
-
-            for (int i = 0; i < reginpec.size(); i++) {
-
-                contr.storeResult(reginpec.get(i));
+                e.setResult(true);
+                contr.addPayment(e.getCost());
+                
+            }
+            else {
+            e.setResult(false);
             }
 
-            contr.printResult(reginpec);
-            if (contr.authorize()) {
-                System.out.println("Payment Authorized, amount to pay: " + cost + " Kr");
-            }
-
-            contr.addBalance(cost);
-            System.out.println("Current value in counter is now: " + contr.getBalance() + " Kr");
         }
 
+        for (int i = 0; i < reginpec.size(); i++) {
+
+            contr.storeResult(reginpec.get(i));
+        }
+        
+        
+        
+        if (contr.authorize()){
+          
+        contr.printResult(reginpec, contr.getPayment(), contr.getBalance());
+        }
+        
+
+        contr.addBalance(cost);
+        System.out.println("Current value in counter is now: " + contr.getBalance() + " Kr");
     }
+
 }

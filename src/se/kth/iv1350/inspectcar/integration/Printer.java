@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class Printer {
     
-    public void printResult(List<InspectionItem> inspectionList){
+    public void printResult(List<InspectionItem> inspectionList , int cost){
         
         for(InspectionItem e : inspectionList){
             String status = "Repaired"; 
@@ -21,5 +21,10 @@ public class Printer {
                 status ="Not Repaired";
             System.out.println(e.getName() + " is: " + status);
         }
+            
+           System.out.println("Payment Authorized, amount to pay: " + cost+" Kr");
+        
+          // System.out.println("Current value in counter is now: " + amount+ " Kr");
     } 
 }
+    

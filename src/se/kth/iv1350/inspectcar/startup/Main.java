@@ -25,13 +25,13 @@ public class Main {
     public static void main(String[] args) {
         DatabaseManager dbMgr = new DatabaseManager();
         Garage garage = new Garage();
-
+        
+        
+        garage.nextInspection();
         PaymentAuthorization auth = new PaymentAuthorization();
         Counter counter = new Counter(750);
 
         Controller contr = new Controller(dbMgr, garage, auth, counter);
-
-        
 
         View view = new View(contr);
         view.sampleExecution();

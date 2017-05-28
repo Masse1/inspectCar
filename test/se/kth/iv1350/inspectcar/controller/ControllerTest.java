@@ -5,21 +5,36 @@ import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import se.kth.iv1350.inspectcar.integration.DatabaseManager;
+import se.kth.iv1350.inspectcar.integration.Garage;
+import se.kth.iv1350.inspectcar.integration.PaymentAuthorization;
+import se.kth.iv1350.inspectcar.model.Counter;
 
 public class ControllerTest {
+
     private DatabaseManager dbMgr;
+    private Garage garage;
+    private PaymentAuthorization auth;
+    private Counter counter;
     private Controller instance;
+    private int amount;
 
     @Before
     public void setUp() {
         dbMgr = new DatabaseManager();
-        instance = new Controller(dbMgr);
+        garage = new Garage();
+        auth = new PaymentAuthorization();
+        counter = new Counter(amount);
+        instance = new Controller(dbMgr, garage, auth, counter);
     }
 
     @After
     public void tearDown() {
         dbMgr = null;
+        garage = null;
+        counter = null;
+        auth = null;
         instance = null;
+
     }
 
     @Test

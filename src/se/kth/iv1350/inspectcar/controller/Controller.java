@@ -77,10 +77,10 @@ public class Controller {
         dbMgr.storeResult(part);
     }
 
-    public void printResult(List<InspectionItem> inspectionList) {
+    public void printResult(List<InspectionItem> inspectionList , int cost, int balance) {
         Printer printer = new Printer();
 
-        printer.printResult(inspectionList);
+        printer.printResult(inspectionList, cost );
     }
 
     public boolean authorize() {
@@ -94,7 +94,13 @@ public class Controller {
     public void addBalance(int amount) {
         counter.addBalance(amount);
 
-        printer.printResult(inspectionList);
+    }
 
+    public void addPayment(int cost) {
+        counter.addPayment(cost);
+    }
+
+    public int getPayment() {
+        return counter.getPayment();
     }
 }

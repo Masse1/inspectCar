@@ -10,16 +10,31 @@ package se.kth.iv1350.inspectcar.model;
  * @author Kristoffer
  */
 public class Counter {
-    private int balance; 
-    
+
+    private int balance;
+    private int customerPayment = 0;
+
     public Counter(int balance) {
-        this.balance = balance; 
+        this.balance = balance;
     }
-    
+
     public int getBalance() {
-        return balance; 
+        return balance;
     }
-    public void addBalance(int amount) {
-        balance = balance + amount;
+
+    public void addPayment(int cost) {
+        customerPayment += cost;
+
+    }
+
+    public void addBalance(int cost) {
+        balance = balance + customerPayment;
+        customerPayment=0;
+    }
+
+    
+
+    public int getPayment() {
+       return customerPayment;
     }
 }

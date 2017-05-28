@@ -58,10 +58,11 @@ public class DatabaseManager {
 
     
    
-    
+    }
     public void storeResult(InspectionItem part) {
-        part.setResult(true);
+        
         resultList.add(part);
     }
     
 }
+
